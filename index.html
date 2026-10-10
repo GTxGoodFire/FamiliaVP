@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Familia VP</title>
+    <!-- Google Fonts para un diseño moderno -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos generales y reseteo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Cabecera / Hero */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Títulos de sección */
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #1e3c72;
+        }
+
+        .section-title .line {
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #2a5298;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Tarjeta de recuerdos */
+        .memory-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Contenedor adaptable para el vídeo de YouTube (Responsive 16:9) */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Mantiene la proporción 16:9 en cualquier pantalla */
+            height: 0;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Información del vídeo dentro de la tarjeta */
+        .memory-info {
+            padding: 25px;
+        }
+
+        .memory-info h3 {
+            font-size: 1.4rem;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .memory-info .date {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .memory-info .description {
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #fff;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaeaea;
+            margin-top: 50px;
+        }
+
+        /* Ajustes específicos para móviles pequeños */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 40px 15px;
+            }
+            .container {
+                margin: 20px 10px;
+                padding: 0 10px;
+            }
+            .memory-info {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabecera de la Web -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Familia VP</h1>
+            <p>Un espacio para guardar y compartir nuestros mejores momentos</p>
+        </div>
+    </header>
+
+    <!-- Sección de Recuerdos -->
+    <main class="container">
+        <section class="section-title">
+            <h2>Nuestros Recuerdos</h2>
+            <span class="line"></span>
+        </section>
+
+        <!-- Tarjeta del Vídeo Principal -->
+        <div class="memory-card">
+            <div class="video-container">
+                <!-- Vídeo de YouTube integrado -->
+                <iframe src="https://www.youtube.com/embed/NxbbfDDPS9s" 
+                        title="Cumpleaños de Justina 40 Años" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            <div class="memory-info">
+                <h3>Cumpleaños de Justina - 40 Años</h3>
+                <p class="date">📅 Celebración Especial</p>
+                <p class="description">Un recorrido inolvidable por los mejores momentos de la celebración familiar. ¡Los recuerdos que quedan para siempre!</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Hecho con ❤️ para la Familia VP</p>
+    </footer>
+
+</body>
+</html>
