@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Familia Paredes Villegas</title>
-    <!-- Google Fonts -->
+    <title>Familia Paredes Villegas - Galería de Recuerdos</title>
+    
+    <!-- Favicon vinculado al archivo FPV.png -->
+    <link rel="icon" type="image/png" href="FPV.png">
+    <link rel="apple-touch-icon" href="FPV.png">
+
+    <!-- Fuentes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Variables de color y tema (Oscuro + Naranja) */
+        /* Variables principales del tema Oscuro + Naranja Brillante */
         :root {
             --bg-dark: #0a0e17;
             --bg-card: rgba(18, 24, 38, 0.85);
@@ -45,7 +52,6 @@
             padding-top: 75px;
         }
 
-        /* Barra de navegación superior */
         .navbar {
             position: fixed;
             top: 0;
@@ -119,7 +125,6 @@
             border: 1px solid var(--orange-border);
         }
 
-        /* Cabecera / Hero */
         .hero {
             text-align: center;
             padding: 60px 20px 40px;
@@ -159,14 +164,12 @@
             margin: 0 auto;
         }
 
-        /* Contenedor principal */
         .container {
             max-width: 960px;
             margin: 0 auto;
             padding: 20px 20px 60px;
         }
 
-        /* Separador de sección */
         .section-header {
             display: flex;
             align-items: center;
@@ -187,7 +190,6 @@
             background: linear-gradient(90deg, var(--orange-border), transparent);
         }
 
-        /* Tarjeta de video interactiva con borde naranja */
         .memory-card {
             background: var(--bg-card);
             border: 1px solid var(--orange-border);
@@ -205,7 +207,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--orange-glow);
         }
 
-        /* Contenedor del video (16:9 adaptable) */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -223,7 +224,6 @@
             border: none;
         }
 
-        /* Información del contenido */
         .memory-details {
             padding: 28px;
         }
@@ -263,7 +263,6 @@
             line-height: 1.7;
         }
 
-        /* Pie de página */
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -273,7 +272,6 @@
             font-size: 0.9rem;
         }
 
-        /* Ajustes responsivos para móviles */
         @media (max-width: 640px) {
             body {
                 padding-top: 65px;
@@ -312,14 +310,13 @@
 </head>
 <body>
 
-    <!-- Barra de Navegación Superior -->
     <nav class="navbar">
         <div class="nav-container">
             <!-- Logo e Identidad a la IZQUIERDA -->
-            <div class="nav-brand">
-                <img src="FPV.png" alt="Logo FPV">
+            <a href="#inicio" class="nav-brand">
+                <img src="FPV.png" alt="Logo FPV" onerror="this.style.display='none'">
                 <span>Familia Paredes Villegas</span>
-            </div>
+            </a>
 
             <!-- Menú a la DERECHA -->
             <ul class="nav-links">
@@ -329,25 +326,22 @@
         </div>
     </nav>
 
-    <!-- Cabecera / Sección Inicio -->
     <header class="hero" id="inicio">
         <span class="badge">Álbum Digital</span>
         <h1>Familia VP</h1>
         <p>Un espacio dedicado a guardar y revivir nuestros mejores momentos juntos.</p>
     </header>
 
-    <!-- Sección Principal / Recuerdos -->
     <main class="container" id="recuerdos">
         <div class="section-header">
             <h2>Recuerdos Especiales</h2>
             <div class="line"></div>
         </div>
 
-        <!-- Tarjeta del Video -->
         <article class="memory-card">
             <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/NxbbfDDPS9s" 
-                        title="Cumpleaños de Justina 40 Años" 
+                        title="Cumpleaños de Justina - 40 Años" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                 </iframe>
@@ -363,7 +357,6 @@
         </article>
     </main>
 
-    <!-- Pie de página -->
     <footer>
         <p>© Copyright 2026 - Hecho por Mijael</p>
     </footer>
