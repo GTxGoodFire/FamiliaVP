@@ -3,196 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Familia VP</title>
-    <!-- Google Fonts para un diseño moderno -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <title>Familia Paredes Villegas</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Estilos generales y reseteo */
+        /* Variables de color y tema (Oscuro + Naranja) */
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: rgba(18, 24, 38, 0.85);
+            --bg-nav: rgba(10, 14, 23, 0.9);
+            --orange-primary: #f97316;
+            --orange-glow: rgba(249, 115, 22, 0.25);
+            --orange-border: rgba(249, 115, 22, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Reseteo y base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(249, 115, 22, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(234, 88, 12, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
             line-height: 1.6;
+            padding-top: 75px;
+        }
+
+        /* Barra de navegación superior */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--orange-border);
+            box-shadow: 0 4px 20px var(--orange-glow);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo e Identidad a la IZQUIERDA */
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-brand img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid var(--orange-border);
+        }
+
+        .nav-brand span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.3px;
+        }
+
+        /* Menú a la DERECHA */
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            background: rgba(249, 115, 22, 0.15);
+            border: 1px solid var(--orange-border);
         }
 
         /* Cabecera / Hero */
         .hero {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
             text-align: center;
-            padding: 60px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid var(--orange-primary);
+            color: var(--orange-primary);
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            box-shadow: 0 0 12px var(--orange-glow);
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
         }
 
         .hero p {
+            color: var(--text-muted);
             font-size: 1.1rem;
-            font-weight: 300;
-            opacity: 0.9;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         /* Contenedor principal */
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px 20px 60px;
         }
 
-        /* Títulos de sección */
-        .section-title {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #1e3c72;
-        }
-
-        .section-title .line {
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: #2a5298;
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Tarjeta de recuerdos */
-        .memory-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        /* Separador de sección */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
             margin-bottom: 30px;
-            transition: transform 0.3s ease;
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+
+        .section-header .line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--orange-border), transparent);
+        }
+
+        /* Tarjeta de video interactiva con borde naranja */
+        .memory-card {
+            background: var(--bg-card);
+            border: 1px solid var(--orange-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--orange-glow);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .memory-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
+            border-color: var(--orange-primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--orange-glow);
         }
 
-        /* Contenedor adaptable para el vídeo de YouTube (Responsive 16:9) */
-        .video-container {
+        /* Contenedor del video (16:9 adaptable) */
+        .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Mantiene la proporción 16:9 en cualquier pantalla */
-            height: 0;
+            padding-bottom: 56.25%;
             background: #000;
+            border-bottom: 1px solid var(--orange-border);
         }
 
-        .video-container iframe {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            border: none;
         }
 
-        /* Información del vídeo dentro de la tarjeta */
-        .memory-info {
-            padding: 25px;
+        /* Información del contenido */
+        .memory-details {
+            padding: 28px;
         }
 
-        .memory-info h3 {
-            font-size: 1.4rem;
-            color: #222;
-            margin-bottom: 8px;
-        }
-
-        .memory-info .date {
-            font-size: 0.9rem;
-            color: #666;
+        .tag-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 12px;
         }
 
-        .memory-info .description {
+        .tag {
+            background: rgba(249, 115, 22, 0.15);
+            color: var(--orange-primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--orange-border);
+        }
+
+        .duration {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .memory-details h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .memory-details p {
+            color: var(--text-muted);
             font-size: 0.95rem;
-            color: #444;
+            line-height: 1.7;
         }
 
         /* Pie de página */
         footer {
             text-align: center;
-            padding: 25px;
-            background-color: #fff;
-            color: #777;
+            padding: 30px 20px;
+            border-top: 1px solid var(--orange-border);
+            background: rgba(10, 14, 23, 0.95);
+            color: var(--text-muted);
             font-size: 0.9rem;
-            border-top: 1px solid #eaeaea;
-            margin-top: 50px;
         }
 
-        /* Ajustes específicos para móviles pequeños */
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 2.2rem;
+        /* Ajustes responsivos para móviles */
+        @media (max-width: 640px) {
+            body {
+                padding-top: 65px;
+            }
+            .navbar {
+                height: 65px;
+            }
+            .nav-container {
+                padding: 0 15px;
+            }
+            .nav-brand span {
+                font-size: 0.88rem;
+            }
+            .nav-brand img {
+                width: 32px;
+                height: 32px;
+            }
+            .nav-links {
+                gap: 8px;
+            }
+            .nav-links a {
+                font-size: 0.82rem;
+                padding: 4px 8px;
             }
             .hero {
-                padding: 40px 15px;
+                padding: 40px 16px 20px;
             }
-            .container {
-                margin: 20px 10px;
-                padding: 0 10px;
+            .memory-details {
+                padding: 20px;
             }
-            .memory-info {
-                padding: 15px;
+            .memory-details h3 {
+                font-size: 1.25rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabecera de la Web -->
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Familia VP</h1>
-            <p>Un espacio para guardar y compartir nuestros mejores momentos</p>
+    <!-- Barra de Navegación Superior -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo e Identidad a la IZQUIERDA -->
+            <div class="nav-brand">
+                <img src="FPV.png" alt="Logo FPV">
+                <span>Familia Paredes Villegas</span>
+            </div>
+
+            <!-- Menú a la DERECHA -->
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#recuerdos">Recuerdos</a></li>
+            </ul>
         </div>
+    </nav>
+
+    <!-- Cabecera / Sección Inicio -->
+    <header class="hero" id="inicio">
+        <span class="badge">Álbum Digital</span>
+        <h1>Familia VP</h1>
+        <p>Un espacio dedicado a guardar y revivir nuestros mejores momentos juntos.</p>
     </header>
 
-    <!-- Sección de Recuerdos -->
-    <main class="container">
-        <section class="section-title">
-            <h2>Nuestros Recuerdos</h2>
-            <span class="line"></span>
-        </section>
+    <!-- Sección Principal / Recuerdos -->
+    <main class="container" id="recuerdos">
+        <div class="section-header">
+            <h2>Recuerdos Especiales</h2>
+            <div class="line"></div>
+        </div>
 
-        <!-- Tarjeta del Vídeo Principal -->
-        <div class="memory-card">
-            <div class="video-container">
-                <!-- Vídeo de YouTube integrado -->
+        <!-- Tarjeta del Video -->
+        <article class="memory-card">
+            <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/NxbbfDDPS9s" 
                         title="Cumpleaños de Justina 40 Años" 
-                        frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                 </iframe>
             </div>
-            <div class="memory-info">
+            <div class="memory-details">
+                <div class="tag-row">
+                    <span class="tag">🎉 Cumpleaños</span>
+                    <span class="duration">⏱️ 3:05:22</span>
+                </div>
                 <h3>Cumpleaños de Justina - 40 Años</h3>
-                <p class="date">📅 Celebración Especial</p>
-                <p class="description">Un recorrido inolvidable por los mejores momentos de la celebración familiar. ¡Los recuerdos que quedan para siempre!</p>
+                <p>Revive la gran celebración de los 40 años de Justina. Un recuerdo completo lleno de música, risas y momentos inolvidables compartidos en familia.</p>
             </div>
-        </div>
+        </article>
     </main>
 
     <!-- Pie de página -->
     <footer>
-        <p>Hecho con ❤️ para la Familia VP</p>
+        <p>© Copyright 2026 - Hecho por Mijael</p>
     </footer>
 
 </body>
