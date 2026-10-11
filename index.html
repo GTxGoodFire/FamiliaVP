@@ -379,11 +379,11 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--orange-glow);
         }
 
-        /* Contenedor del reproductor de vídeo */
+        /* Contenedor responsivo para el iframe de OneDrive */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
             height: 0;
             background: #000;
             border-bottom: 1px solid var(--orange-border);
@@ -393,8 +393,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100% !important;
+            height: 100% !important;
             border: none;
         }
 
@@ -459,7 +459,6 @@
             }
         }
 
-        /* AJUSTE ESPECÍFICO PARA MÓVILES */
         @media (max-width: 640px) {
             body {
                 padding-top: 65px;
@@ -487,13 +486,6 @@
             .hero {
                 padding: 35px 16px 15px;
             }
-
-            /* Proporción ampliada en móvil para dar espacio completo a los controles del iframe */
-            .video-wrapper {
-                padding-bottom: 82%;
-                min-height: 300px;
-            }
-
             .memory-details {
                 padding: 20px;
             }
@@ -510,7 +502,7 @@
         <div class="nav-container">
             <a href="#inicio" class="nav-brand">
                 <img src="FPV.png" alt="Logo FPV">
-                <span>Familia VP</span>
+                <span>Familia PV</span>
             </a>
 
             <ul class="nav-links">
@@ -543,8 +535,8 @@
                 <!-- ÁLBUM 1: CUMPLEAÑOS MAMÁ -->
                 <article class="album-card">
                     <div class="album-cover">
-                        <img src="FPV.png" alt="Cumpleaños Mamá">
-                        <span class="photo-count-badge">📷 2 Fotos</span>
+                        <img src="DSC05210.JPG" alt="Cumpleaños Mamá" onerror="this.src='FPV.png'">
+                        <span class="photo-count-badge">📷 1077 Fotos</span>
                     </div>
                     <div class="album-info">
                         <div>
@@ -580,13 +572,10 @@
                 <div class="line"></div>
             </div>
 
-            <!-- Tarjeta del Video de Google Drive -->
+            <!-- Tarjeta con el iframe de OneDrive -->
             <article class="memory-card">
                 <div class="video-wrapper">
-                    <iframe src="https://drive.google.com/file/d/1DK7GZ6kCTAV8IWUOW5xr4dcajh9TIC3u/preview" 
-                            allow="autoplay; fullscreen" 
-                            allowfullscreen="true">
-                    </iframe>
+                    <iframe src="https://1drv.ms/v/c/c1ce4aaaec5b771f/IQSg5b9ve0FIQofKHGhYKAhvAdPNyQPinGuPsHwTBaNltRY" frameborder="0" scrolling="no" allowfullscreen></iframe>
                 </div>
                 <div class="memory-details">
                     <div class="tag-row">
@@ -618,11 +607,17 @@
     </footer>
 
     <script>
+        const cumpleMamaPhotos = [];
+        for (let i = 5210; i <= 6286; i++) {
+            const fileName = `DSC0${i}.JPG`;
+            cumpleMamaPhotos.push({
+                src: fileName,
+                title: `Cumpleaños Mamá - ${fileName}`
+            });
+        }
+
         const albums = {
-            cumpleMama: [
-                { src: "FPV.png", title: "Cumpleaños Mamá - Momento del pastel" },
-                { src: "FPV.png", title: "Cumpleaños Mamá - Foto de familia" }
-            ],
+            cumpleMama: cumpleMamaPhotos,
             proximaFiesta: [
                 { src: "FPV.png", title: "Próxima fiesta - Espacio reservado" }
             ]
@@ -663,6 +658,15 @@
         document.getElementById('lightbox').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') changePhoto(-1);
+                if (e.key === 'ArrowRight') changePhoto(1);
+                if (e.key === 'Escape') closeLightbox();
             }
         });
     </script>
