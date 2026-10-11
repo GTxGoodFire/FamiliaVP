@@ -362,6 +362,13 @@
             right: -60px;
         }
 
+        /* Disposición en cuadrícula para vídeos uno al lado del otro */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
         .memory-card {
             background: var(--bg-card);
             border: 1px solid var(--orange-border);
@@ -371,6 +378,8 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--orange-glow);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
         }
 
         .memory-card:hover {
@@ -389,13 +398,16 @@
         .video-container video {
             width: 100%;
             height: auto;
-            max-height: 500px;
+            max-height: 350px;
             display: block;
             outline: none;
         }
 
         .memory-details {
-            padding: 28px;
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .tag-row {
@@ -421,7 +433,7 @@
         }
 
         .memory-details h3 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             font-weight: 600;
             color: #ffffff;
             margin-bottom: 10px;
@@ -568,23 +580,43 @@
                 <div class="line"></div>
             </div>
 
-            <!-- Reproductor Nativo HTML5 sin póster fijo -->
-            <article class="memory-card">
-                <div class="video-container">
-                    <video controls playsinline preload="metadata">
-                        <source src="https://archive.org/download/cumplean-os-de-justina-40-an-os/CUMPLEA%C3%91OS%20DE%20JUSTINA%2040%20A%C3%91OS.mp4" type="video/mp4">
-                        Tu navegador no soporta la reproducción de vídeo.
-                    </video>
-                </div>
-                <div class="memory-details">
-                    <div class="tag-row">
-                        <span class="tag">🎉 Cumpleaños</span>
-                        <span class="duration">⏱️ 3:05:22</span>
+            <div class="videos-grid">
+                <!-- VÍDEO 1: CUMPLEAÑOS COMPLETO -->
+                <article class="memory-card">
+                    <div class="video-container">
+                        <video controls playsinline preload="metadata">
+                            <source src="https://archive.org/download/cumplean-os-de-justina-40-an-os/CUMPLEA%C3%91OS%20DE%20JUSTINA%2040%20A%C3%91OS.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de vídeo.
+                        </video>
                     </div>
-                    <h3>Cumpleaños de Justina - 40 Años</h3>
-                    <p>Revive la gran celebración de los 40 años de Justina. Un recuerdo completo lleno de música, risas y momentos inolvidables compartidos en familia.</p>
-                </div>
-            </article>
+                    <div class="memory-details">
+                        <div class="tag-row">
+                            <span class="tag">🎉 Cumpleaños</span>
+                            <span class="duration">⏱️ 3:05:22</span>
+                        </div>
+                        <h3>Cumpleaños de Justina - 40 Años</h3>
+                        <p>Revive la gran celebración de los 40 años de Justina. Un recuerdo completo lleno de música, risas y momentos inolvidables compartidos en familia.</p>
+                    </div>
+                </article>
+
+                <!-- VÍDEO 2: VÍDEO FOTO -->
+                <article class="memory-card">
+                    <div class="video-container">
+                        <video controls playsinline preload="metadata">
+                            <source src="https://archive.org/download/fotovideo-justina-40-an-os/FOTOVIDEO%20JUSTINA%2040%20A%C3%91OS.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de vídeo.
+                        </video>
+                    </div>
+                    <div class="memory-details">
+                        <div class="tag-row">
+                            <span class="tag">📸 FotoVídeo</span>
+                            <span class="duration">⏱️ Recopilación</span>
+                        </div>
+                        <h3>FotoVídeo - Justina 40 Años</h3>
+                        <p>Una recopilación especial en formato vídeo con los mejores momentos y fotografías de la celebración.</p>
+                    </div>
+                </article>
+            </div>
         </section>
 
     </main>
@@ -594,7 +626,7 @@
         <div class="lightbox-content">
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
             <button class="lightbox-btn lightbox-prev" onclick="changePhoto(-1)">&#10094;</button>
-            <img id="lightbox-img" src="" alt="Ampliada">
+            <img id="lightbox-img" src="" alt="Ampliada" onerror="handlePhotoError()">
             <button class="lightbox-btn lightbox-next" onclick="changePhoto(1)">&#10095;</button>
             <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
@@ -606,7 +638,7 @@
     </footer>
 
     <script>
-        // Generación dinámica de la lista de fotos de Cumpleaños Mamá
+        // Generación dinámica de la lista de fotos
         const cumpleMamaPhotos = [];
         for (let i = 5210; i <= 6286; i++) {
             const fileName = `DSC0${i}.JPG`;
@@ -625,11 +657,13 @@
 
         let currentAlbum = [];
         let currentIndex = 0;
+        let lastDirection = 1;
 
         function openAlbum(albumKey) {
             if (albums[albumKey] && albums[albumKey].length > 0) {
                 currentAlbum = albums[albumKey];
                 currentIndex = 0;
+                lastDirection = 1;
                 updateLightboxContent();
                 document.getElementById('lightbox').classList.add('active');
             }
@@ -640,6 +674,7 @@
         }
 
         function changePhoto(direction) {
+            lastDirection = direction;
             currentIndex += direction;
             if (currentIndex < 0) {
                 currentIndex = currentAlbum.length - 1;
@@ -647,6 +682,13 @@
                 currentIndex = 0;
             }
             updateLightboxContent();
+        }
+
+        // Si la foto no existe en el servidor, avanza automáticamente a la siguiente
+        function handlePhotoError() {
+            if (currentAlbum.length > 0) {
+                changePhoto(lastDirection);
+            }
         }
 
         function updateLightboxContent() {
