@@ -379,23 +379,19 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--orange-glow);
         }
 
-        /* Contenedor responsivo para el iframe de OneDrive */
-        .video-wrapper {
-            position: relative;
+        /* Reproductor Nativo HTML5 */
+        .video-container {
             width: 100%;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
-            height: 0;
             background: #000;
             border-bottom: 1px solid var(--orange-border);
         }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100% !important;
-            height: 100% !important;
-            border: none;
+        .video-container video {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            display: block;
+            outline: none;
         }
 
         .memory-details {
@@ -572,10 +568,13 @@
                 <div class="line"></div>
             </div>
 
-            <!-- Tarjeta con el iframe de OneDrive -->
+            <!-- Reproductor Nativo HTML5 para iPhone / AirPlay / Smart TV -->
             <article class="memory-card">
-                <div class="video-wrapper">
-                    <iframe src="https://1drv.ms/v/c/c1ce4aaaec5b771f/IQSg5b9ve0FIQofKHGhYKAhvAdPNyQPinGuPsHwTBaNltRY" frameborder="0" scrolling="no" allowfullscreen></iframe>
+                <div class="video-container">
+                    <video controls playsinline preload="metadata" poster="FPV.png">
+                        <source src="https://1drv.ms/v/c/c1ce4aaaec5b771f/IQCg5b9ve0FIQofKHGhYKAhvAeaqcR7qRfHkT8Jqg5LjN3o?download=1" type="video/mp4">
+                        Tu navegador no soporta la reproducción de vídeo.
+                    </video>
                 </div>
                 <div class="memory-details">
                     <div class="tag-row">
@@ -607,6 +606,7 @@
     </footer>
 
     <script>
+        // Generación dinámica de la lista de fotos de Cumpleaños Mamá
         const cumpleMamaPhotos = [];
         for (let i = 5210; i <= 6286; i++) {
             const fileName = `DSC0${i}.JPG`;
@@ -661,6 +661,7 @@
             }
         });
 
+        // Soporte para navegar con las flechas del teclado
         document.addEventListener('keydown', function(e) {
             const lightbox = document.getElementById('lightbox');
             if (lightbox.classList.contains('active')) {
