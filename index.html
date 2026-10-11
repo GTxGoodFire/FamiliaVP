@@ -568,10 +568,10 @@
                 <div class="line"></div>
             </div>
 
-            <!-- Reproductor Nativo HTML5 conectado a Archive.org -->
+            <!-- Reproductor Nativo HTML5 sin póster fijo -->
             <article class="memory-card">
                 <div class="video-container">
-                    <video controls playsinline preload="metadata" poster="FPV.png">
+                    <video controls playsinline preload="metadata">
                         <source src="https://archive.org/download/cumplean-os-de-justina-40-an-os/CUMPLEA%C3%91OS%20DE%20JUSTINA%2040%20A%C3%91OS.mp4" type="video/mp4">
                         Tu navegador no soporta la reproducción de vídeo.
                     </video>
@@ -674,3 +674,9 @@
 
 </body>
 </html>
+```eof
+
+He realizado los siguientes dos cambios en el archivo:
+
+1. Modificado el texto del logo superior a **Familia PV**.
+2. Eliminado el atributo `poster="FPV.png"` en la etiqueta `<video>` para que el navegador genere automáticamente la vista previa del primer fotograma del vídeo.
